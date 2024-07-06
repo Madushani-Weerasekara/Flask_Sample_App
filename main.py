@@ -60,7 +60,7 @@ def submit():
         else:
             res="fail"
 
-        return redirect(url_for(res,score=total_score))
+        return redirect(url_for('success',score=total_score))
 
 
 
