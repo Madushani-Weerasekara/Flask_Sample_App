@@ -1,6 +1,20 @@
 
 # Intergrate HTML with Flask
 # HTTP verb GET and POST
+
+
+# jinja2 template engine
+import os
+import jinja2
+
+
+"""
+{%...%} conditions, for loops
+{{}} expression to print output
+{{#....#}}this is for comment
+
+"""
+
 from flask import Flask, redirect, url_for, render_template,request
 
 # wsgi application
@@ -24,12 +38,13 @@ def success(score):
     else:
         res="FAIL"
 
-    return render_template('result.html', result=res)
+    return render_template('result.html', result=score)
 
 @app.route('/fail/<int:score>')
 def fail(score):
+   
     return 'The person is fail and the mark is ' + str(score)
-
+"""
 # Result checker
 @app.route('/results/<int:marks>')
 def results(marks):
@@ -39,30 +54,24 @@ def results(marks):
     else:
         result = 'success'
     #return result
-    return redirect(url_for(result,score=marks))
+    return redirect(url_for(result,score=marks))"""
 
 
 # Result checker submit html page
 @app.route('/submit', methods=['POST', 'GET'])
 def submit():
-    total_score=0
+    total_score = 0
     if request.method == 'POST':
         science = float(request.form['science'])
         maths = float(request.form['maths'])
         c = float(request.form['c'])
         data_science = float(request.form['datascience'])
-        total_score = float(science+maths+c+data_science)/4
+        total_score = (science + maths + c + data_science) / 4
 
-        res = ""
-
-        if total_score>=100:
-            res="success"
+        if total_score >= 50:
+            return redirect(url_for('success', score=total_score))
         else:
-            res="fail"
-
-        return redirect(url_for('success',score=total_score))
-
-
+            return redirect(url_for('fail', score=total_score))
 
 
 if __name__ == '__main__':

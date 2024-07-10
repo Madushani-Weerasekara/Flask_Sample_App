@@ -1,8 +1,13 @@
-
+<!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <script type="text/javascipt" src="{{url_for('static', filename='script/script.js')}}">
+            alert("This page has been loaded")
+        </script>
+    </head>
     <body>
-        <form action="/submit", method="post">
-
+        <form action="/submit" method="post">
             <label for="Science">Science:</label><br>
             <input type="text" id="science" name="science" value="0"><br>
 
@@ -16,8 +21,7 @@
             <input type="text" id="datascience" name="datascience" value="0"><br>
 
             <input type="submit" value="Submit">
-
-            <p>If you click the "Submit" button the form data will be sent to a pay</p>
-          </form> 
+            <p>If you click the "Submit" button the form data will be sent to a page</p>
+        </form>
     </body>
 </html>
